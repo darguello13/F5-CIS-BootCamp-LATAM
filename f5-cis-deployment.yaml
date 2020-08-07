@@ -19,14 +19,14 @@
        - name: k8s-bigip-ctlr
          image: "f5networks/k8s-bigip-ctlr"
          env:
-             - name: BIGIP_USERNAME
+           - name: BIGIP_USERNAME
              valueFrom:
                  secretKeyRef:
                  # Replace with the name of the Secret containing your login
                  # credentials
                  name: bigip-login
                  key: admin
-             - name: BIGIP_PASSWORD
+           - name: BIGIP_PASSWORD
              valueFrom:
                  secretKeyRef:
                  # Replace with the name of the Secret containing your login
