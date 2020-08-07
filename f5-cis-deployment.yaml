@@ -16,7 +16,7 @@
      # permissions
      serviceAccountName: bigip-ctlr
      containers:
-         - name: k8s-bigip-ctlr
+       - name: k8s-bigip-ctlr
          image: "f5networks/k8s-bigip-ctlr"
          env:
              - name: BIGIP_USERNAME
