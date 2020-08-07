@@ -3,9 +3,14 @@
      metadata:
        name: k8s-bigip-ctlr-deployment
        namespace: kube-system
+       labels:
+         app: k8s-bigip-ctlr
      spec:
        # DO NOT INCREASE REPLICA COUNT
        replicas: 1
+       selector:
+         matchLabels:
+         app: k8s-bigip-ctlr
        template:
          metadata:
            name: k8s-bigip-ctlr
@@ -15,6 +20,9 @@
            # Name of the Service Account bound to a Cluster Role with the required
            # permissions
            serviceAccountName: bigip-ctlr
+           imagePullSecrets:
+             - name: f5-docker-images
+             - name: bigip-login
            containers:
              - name: k8s-bigip-ctlr
                image: "f5networks/k8s-bigip-ctlr"
