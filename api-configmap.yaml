@@ -1,0 +1,42 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: api-as3-configmap
+  namespace: pre-production
+  labels:
+    f5type: virtual-server
+    as3: "true"
+data:
+  template: |
+    {
+      "class": "AS3",
+      "declaration": {
+        "class": "ADC",
+        "schemaVersion": "3.20.0",
+        "id": "partner-api",
+        "label": "CIS AS3 Example",
+        "remark": "Example of using CIS",
+        "QA": {
+          "class": "Tenant",
+          "MyAPIs": {
+             "class": "Application",
+             "template": "generic",
+             "partner-api": {
+                "class": "Service_TCP",
+                "virtualAddresses": ["10.0.2.10"],
+                "remark":"partner-api: f5demo.tcp.v1",
+                "virtualPort": 80,
+                "pool": "api_pool",
+             },
+             "api_pool": {
+                "class": "Pool",
+                "monitors": [ "tcp" ],
+                "members": [{
+                   "servicePort": 3000,
+                   "serverAddresses": []
+                }]
+             }           
+       }
+       }
+    }
+    }

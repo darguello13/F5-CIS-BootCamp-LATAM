@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: partner-api
+  labels:
+    app: partner-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: partner-api
+  template:
+    metadata:
+      labels:
+        app: partner-api
+    spec:
+      containers:
+        - name: app
+          image: diegoarg/partner-api-demo
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DATABASE_URL
+              value: mongodb://mongo/partners  
+          imagePullPolicy: Always
