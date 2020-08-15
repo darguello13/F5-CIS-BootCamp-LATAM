@@ -22,11 +22,19 @@ data:
                 "class":"Application",
                 "template":"generic",
                 "partner-api":{
-                  "class":"Service_HTTP",
-                  "virtualAddresses":[ "10.0.2.10" ],
-                  "remark":"partner-api: f5demo.tcp.v1",
-                  "virtualPort":80,
-                  "pool":"api_pool"
+                "class":"Service_HTTP",
+                "virtualAddresses":[ "10.0.2.10" ],
+                "remark":"partner-api: f5demo.tcp.v1",
+                "virtualPort":80,
+                "pool":"api_pool",
+                "securityLogProfiles": [
+                   {
+                     "bigip": "/Common/Log all requests"
+                   }
+                 ],
+                "policyWAF": {
+                   "use": "apiWAF"
+                 }
                 },
                 "api_pool":{
                   "class":"Pool",
@@ -36,8 +44,13 @@ data:
                         "servicePort":3000,
                         "serverAddresses":[]
                     }
-                ]
-                }
+                  ]
+                },
+                "apiWAF": {
+                   "class": "WAF_Policy",
+                   "url": "https://raw.githubusercontent.com/cavalen/vlab-azure/master/files/api-waf.json",
+                   "ignoreChanges": true
+                 }
             }
         }
     }
