@@ -48,7 +48,7 @@ data:
                 },
                 "apiWAF": {
                    "class": "WAF_Policy",
-                   "url": "https://raw.githubusercontent.com/cavalen/vlab-azure/master/files/api-waf.json",
+                   "url": "https://raw.githubusercontent.com/darguello13/F5-CIS-BootCamp-LATAM/master/waf-policies/api-waf.json",
                    "ignoreChanges": true
                  }
             }
