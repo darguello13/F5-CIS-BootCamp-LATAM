@@ -1,0 +1,30 @@
+{
+    "policy":{
+       "name":"API-WAF",
+       "description":"DECLARATIVE Policy",
+       "template":{
+          "name":"POLICY_TEMPLATE_RAPID_DEPLOYMENT"
+       },
+       "enforcementMode":"blocking",
+       "server-technologies":[
+          {
+             "serverTechnologyName":"Express.js"
+          },
+          {
+             "serverTechnologyName":"Unix/Linux"
+          },
+          {
+             "serverTechnologyName":"Node.js"
+          },
+          {
+             "serverTechnologyName":"MongoDB"
+          }
+       ],
+       "signature-settings":{
+          "signatureStaging":false
+       },
+       "policy-builder":{
+          "learnOnlyFromNonBotTraffic":false
+       }
+    }
+ }
