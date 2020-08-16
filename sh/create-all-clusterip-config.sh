@@ -3,6 +3,7 @@
 printf "##############################################\n"
 printf "Delete the clusterip environment\n"
 printf "##############################################\n\n\n"
+kubectl create namespace pre-production
 kubectl apply -f nginx-deployment.yaml,nginx-clusterip-service.yaml,nginx-configmap.yaml
 kubectl apply -f api-mongo.yaml,api-deployment.yaml,api-service.yaml,api-configmap.yaml -n pre-production
 kubectl apply -f api-configmap-waf.yaml  
